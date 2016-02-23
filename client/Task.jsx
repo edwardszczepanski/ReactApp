@@ -27,25 +27,32 @@ Task = React.createClass({
  
     return (
       <li className={taskClassName}>
-        <button className="delete" onClick={this.deleteThisTask}>
-          &times;
-        </button>
- 
-        <input
-          type="checkbox"
-          readOnly={true}
-          checked={this.props.task.checked}
-          onClick={this.toggleChecked} />
 
-          { this.props.showPrivateButton ? (
-          <button className="toggle-private" onClick={this.togglePrivate}>
-            { this.props.task.private ? "Private" : "Public" }
-          </button>
-        ) : ''}
+            <input
+                className="delete"
+                type="checkbox"
+                readOnly={true}
+                checked={this.props.task.checked}
+                onClick={this.toggleChecked}/>
+            <span className="delete">Upvote</span>
+
+            <input
+                className="delete"
+                type="checkbox"
+                readOnly={true}
+                checked={!this.props.task.checked}
+                onClick={this.toggleChecked}/>
+            <span className="delete">Downvote</span>
+
+
+        
+ 
+        
  
         <span className="text">
           <strong>{this.props.task.username}</strong>: {this.props.task.text}
         </span>
+
       </li>
     );
   }

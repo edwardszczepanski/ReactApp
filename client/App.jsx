@@ -61,7 +61,8 @@ App = React.createClass({
     return (
       <div className="container">
         <header>
-          <h1>Pulse Social App ({this.data.incompleteCount})</h1>
+          <h1>Pulse Social App</h1>
+          <h3>Parties in your Area: {this.data.incompleteCount}</h3>
 
           <label className="hide-completed">
             <input
