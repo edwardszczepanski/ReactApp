@@ -38,7 +38,8 @@ Meteor.methods({
       text: text,
       createdAt: new Date(),
       owner: Meteor.userId(),
-      username: Meteor.user().username
+      username: Meteor.user().username,
+      upvotes: 10 * Math.random()
     });
   },
  
