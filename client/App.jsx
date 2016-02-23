@@ -22,6 +22,7 @@ App = React.createClass({
     return {
       //tasks: Tasks.find(query, {sort: {createdAt: -1}}).fetch(),
       tasks: Tasks.find(query, {sort: {upvotes: -1}}).fetch(),
+      Count: Tasks.find().count(),
       incompleteCount: Tasks.find({checked: {$ne: true}}).count(),
       currentUser: Meteor.user()
     };
@@ -62,16 +63,8 @@ App = React.createClass({
       <div className="container">
         <header>
           <h1>Pulse Social App</h1>
-          <h3>Parties in your Area: {this.data.incompleteCount}</h3>
+          <h3>Parties in your Area: {this.data.Count}</h3>
 
-          <label className="hide-completed">
-            <input
-              type="checkbox"
-              readOnly={true}
-              checked={this.state.hideCompleted}
-              onClick={this.toggleHideCompleted} />
-            Hide Completed Tasks
-          </label>
 
           <AccountsUIWrapper />
  
@@ -80,7 +73,7 @@ App = React.createClass({
               <input
                 type="text"
                 ref="textInput"
-                placeholder="Type to add new tasks" />
+                placeholder="Type to add new parties" />
             </form> : ''
           }
         </header>

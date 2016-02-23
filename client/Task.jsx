@@ -28,6 +28,10 @@ Task = React.createClass({
     return (
       <li className={taskClassName}>
 
+          <button onClick={this.deleteThisTask}> 
+          &times;
+        </button>
+
             <input
                 className="delete"
                 type="checkbox"
@@ -43,14 +47,10 @@ Task = React.createClass({
                 checked={!this.props.task.checked}
                 onClick={this.toggleChecked}/>
             <span className="delete">Downvote</span>
-
-
-        
- 
         
  
         <span className="text">
-          <strong>{this.props.task.username}</strong>: {this.props.task.text}
+          <strong>{this.props.task.username}</strong>: {this.props.task.text}         Upvotes: {this.props.task.upvotes}
         </span>
 
       </li>
