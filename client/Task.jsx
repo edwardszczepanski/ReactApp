@@ -14,6 +14,14 @@ Task = React.createClass({
     Meteor.call("removeTask", this.props.task._id);
   },
 
+  upvote() {
+    Meteor.call("upvoteTask", this.props.task._id);
+  },
+
+  downvote() {
+    Meteor.call("downvoteTask", this.props.task._id);
+  },
+
   togglePrivate() {
     Meteor.call("setPrivate", this.props.task._id, ! this.props.task.private);
   },
@@ -47,10 +55,13 @@ Task = React.createClass({
                 checked={!this.props.task.checked}
                 onClick={this.toggleChecked}/>
             <span className="delete">Downvote</span>
+
+            <button onClick={this.upvote}>UPVOTE</button>
+            <button onClick={this.downvote}>DOWNVOTE</button>
         
  
         <span className="text">
-          <strong>{this.props.task.username}</strong>: {this.props.task.text}         Upvotes: {this.props.task.upvotes}
+          <strong>{this.props.task.username}</strong>: {this.props.task.text}         Score: {this.props.task.score}
         </span>
 
       </li>

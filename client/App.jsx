@@ -19,11 +19,13 @@ App = React.createClass({
       query = {checked: {$ne: true}};
     }
 
+
+
     return {
       //tasks: Tasks.find(query, {sort: {createdAt: -1}}).fetch(),
-      tasks: Tasks.find(query, {sort: {upvotes: -1}}).fetch(),
+
+      tasks: Tasks.find(query, {sort: {score: -1}}).fetch(),
       Count: Tasks.find().count(),
-      incompleteCount: Tasks.find({checked: {$ne: true}}).count(),
       currentUser: Meteor.user()
     };
   },
@@ -63,7 +65,7 @@ App = React.createClass({
       <div className="container">
         <header>
           <h1>Pulse Social App</h1>
-          <h3>Parties in your Area: {this.data.Count}</h3>
+          <h3>Parties on your Campus: {this.data.Count}</h3>
 
 
           <AccountsUIWrapper />

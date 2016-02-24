@@ -34,13 +34,20 @@ Meteor.methods({
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
- 
+    
+    // These are simply test values
+    var x = Math.floor(1000 * Math.random());
+    var y = Math.floor(1000 * Math.random());
+    var z = x - y;
+
     Tasks.insert({
       text: text,
       createdAt: new Date(),
       owner: Meteor.userId(),
       username: Meteor.user().username,
-      upvotes: Math.floor(1000 * Math.random())
+      upvotes: x,
+      downvotes: y,
+      score: z
     });
   },
  
@@ -50,8 +57,30 @@ Meteor.methods({
       // If the task is private, make sure only the owner can delete it
       throw new Meteor.Error("not-authorized");
     }
- 
+    
     Tasks.remove(taskId);
+  },
+
+  upvoteTask(taskId) {
+    Tasks.update(taskId, { $inc: { upvotes: 1 } });
+    const task = Tasks.findOne(taskId)
+
+    // Right now this logic is unnecesary but it will eventually hold the Reddit Ranking Algo
+    var x = task.upvotes;
+    var y = task.downvotes;
+    var z = x - y;
+    Tasks.update(taskId, { $set: { score: z } });
+  },
+
+  downvoteTask(taskId) {
+    Tasks.update(taskId, { $inc: { upvotes: -1 } });
+    const task = Tasks.findOne(taskId)
+
+    // Right now this logic is unnecesary but it will eventually hold the Reddit Ranking Algo
+    var x = task.upvotes;
+    var y = task.downvotes;
+    var z = x - y;
+    Tasks.update(taskId, { $set: { score: z } });
   },
  
   setChecked(taskId, setChecked) {
@@ -64,14 +93,4 @@ Meteor.methods({
     Tasks.update(taskId, { $set: { checked: setChecked} });
   },
  
-  setPrivate(taskId, setToPrivate) {
-    const task = Tasks.findOne(taskId);
- 
-    // Make sure only the task owner can make a task private
-    if (task.owner !== Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
-    }
- 
-    Tasks.update(taskId, { $set: { private: setToPrivate } });
-  }
 });
