@@ -82,6 +82,14 @@ Meteor.methods({
     var z = x - y;
     Tasks.update(taskId, { $set: { score: z } });
   },
+
+  upToggle () {
+    
+  },
+
+  downToggle () {
+    
+  },
  
   setChecked(taskId, setChecked) {
     const task = Tasks.findOne(taskId);

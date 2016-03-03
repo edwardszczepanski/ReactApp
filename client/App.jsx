@@ -19,8 +19,6 @@ App = React.createClass({
       query = {checked: {$ne: true}};
     }
 
-
-
     return {
       //tasks: Tasks.find(query, {sort: {createdAt: -1}}).fetch(),
 
