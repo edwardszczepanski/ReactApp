@@ -62,7 +62,7 @@ App = React.createClass({
     return (
       <div className="container">
         <header>
-          <h1>Pulse Social App</h1>
+          <h1>Social App</h1>
           <h3>Parties on your Campus: {this.data.Count}</h3>
 
 

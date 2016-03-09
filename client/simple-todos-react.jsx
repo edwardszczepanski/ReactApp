@@ -83,11 +83,11 @@ Meteor.methods({
     Tasks.update(taskId, { $set: { score: z } });
   },
 
-  upToggle () {
+  upToggle (taskId) {
     
   },
 
-  downToggle () {
+  downToggle (taskId) {
     
   },
  

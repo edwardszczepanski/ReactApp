@@ -41,6 +41,26 @@ Task = React.createClass({
     const taskClassName = (this.props.task.checked ? "checked" : "") + " " +
       (this.props.task.private ? "private" : "");
  
+    /*
+    Temporarily removed code from below:
+                <!--input
+                type="checkbox"
+                readOnly={true}
+                checked={this.props.task.checked}
+                onClick={this.upToggle}/ -->
+            <!-- span className="delete">Upvote</span -->
+
+            <!--input
+
+                type="checkbox"
+                readOnly={true}
+                checked={this.props.task.checked}
+                onClick={this.downToggle}/>
+            <span className="delete">Downvote</span -->
+
+    */
+
+
     return (
       <li className={taskClassName}>
 
@@ -48,21 +68,6 @@ Task = React.createClass({
           &times;
         </button>
 
-            <input
-                className="delete"
-                type="checkbox"
-                readOnly={true}
-                checked={this.props.task.checked}
-                onClick={this.upToggle}/>
-            <span className="delete">Upvote</span>
-
-            <input
-                className="delete"
-                type="checkbox"
-                readOnly={true}
-                checked={this.props.task.checked}
-                onClick={this.downToggle}/>
-            <span className="delete">Downvote</span>
 
             <button onClick={this.upvote}>UPVOTE</button>
             <button onClick={this.downvote}>DOWNVOTE</button>
